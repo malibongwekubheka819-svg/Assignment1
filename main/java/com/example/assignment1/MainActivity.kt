@@ -11,7 +11,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var editTextTimeOfDay: EditText
+
+    private lateinit var editTextimeOfDay: EditText
     private lateinit var buttonGetSuggestion: Button
     private lateinit var textViewSuggestion: TextView
     private lateinit var buttonReset: Button
@@ -26,43 +27,56 @@ class MainActivity : AppCompatActivity() {
             insets
         }
         // Initialize views
-        editTextTimeOfDay = findViewById(R.id.editTextTimeOfDay)
+        editTextimeOfDay = findViewById(R.id.editTextTimeOfDay)
         buttonGetSuggestion = findViewById(R.id.buttonGetSuggestion)
         textViewSuggestion = findViewById(R.id.textViewSuggestion)
         buttonReset = findViewById(R.id.buttonReset)
 
-        // Set up onClick listener for Get Suggestion button
+        //Set up OnClick Listener for Get Suggestion button
         buttonGetSuggestion.setOnClickListener {
-            val timeOfDay = editTextTimeOfDay.text.toString().trim().lowercase()
+            val timeOfDay = editTextimeOfDay.text.toString().trim().lowercase()
 
-            // Get suggestion based on input time of day
+            //Get suggestion based on input time of day
             val suggestion = getSocialSparkSuggestion(timeOfDay)
-
             if (suggestion.isNotEmpty()) {
                 textViewSuggestion.text = suggestion
+
             } else {
-                Toast.makeText(this, "Please enter a valid time of day (Morning, Afternoon, etc.)", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this, "Please enter a valid time of day(Morning, Afternoon, etc)",
+                    Toast.LENGTH_SHORT
+                ).show()
+
             }
         }
-
-        // Set up onClick listener for Reset button
+        //Set up onClick Listener for Reset button
         buttonReset.setOnClickListener {
-            editTextTimeOfDay.text.clear()
+            editTextimeOfDay.text.clear()
             textViewSuggestion.text = "Suggestion will appear here"
         }
+
     }
 
-    // Function to provide a suggestion based on the input time of day
-    private fun getSocialSparkSuggestion(timeOfDay: String): String {
+    //Function to provide a suggestion based on the input time of day
+    private  fun getSocialSparkSuggestion(timeOfDay: String): String {
         return when (timeOfDay) {
-            "morning" -> "Send a 'Good morning' text to a family member."
-            "mid-morning" -> "Reach out to a colleague with a quick 'Thank you.'"
-            "afternoon" -> "Share a funny meme or interesting link with a friend."
-            "afternoon snack time" -> "Send a quick 'thinking of you' message."
-            "dinner" -> "Call a friend or relative for a 5-minute catch-up."
+            "morning" -> "Send a Good morning' text to a family member."
+            "mid-morning" -> "Reach out to a colleague with a quick 'Thank you."
+            "aftenoon snack time" -> "Send a quick 'thinking of you' message."
+            "dinner" -> "Call a friend or relative for a 5-minutes catch-up."
             "after dinner", "night" -> "Leave a thoughtful comment on a friend's post."
-            else -> ""  // Return empty if invalid input
+            else -> "" // Return empty if invalid input
+
+
         }
+    }
 
     }
-}
+
+
+
+
+
+
+
+
